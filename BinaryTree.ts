@@ -1,3 +1,6 @@
+
+
+
 class BinarySearchTree {
     _root = null
 
@@ -5,7 +8,7 @@ class BinarySearchTree {
 
     }
 
-    add(value) {
+    add(value: number) {
         let node = {
             value: value,
             left: null,
@@ -73,8 +76,6 @@ class BinarySearchTree {
         return result;
     }
 
-    toString() {
-    }
 
     traverse(callback) {
         function inOrder(node) {
@@ -91,8 +92,29 @@ class BinarySearchTree {
         }
         inOrder(this._root);
     }
+    depth(value) {
+        let depth = 0;
+        let current = this._root;
+        let found=false;
 
-    
+        while (current) {
+
+            if (value < current.value) {
+                current = current.left;
+            } else if (value > current.value) {
+                current = current.right;
+            }
+            else if(value===current.value){
+                found=true;
+                break;
+            }
+            depth++;
+            continue;
+        }
+        return found?depth:null;
+    }
+
+
 }
 
 export default BinarySearchTree;
